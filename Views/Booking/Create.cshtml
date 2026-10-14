@@ -1,0 +1,54 @@
+@model HotelManager.Models.Booking
+
+@{
+    ViewData["Title"] = "Checkout";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow border-0">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Complete Your Reservation</h3>
+                </div>
+                <div class="card-body p-4">
+                    
+                    <!--Display the room-->
+                    <div class="alert alert-info mb-4">
+                        <h5 class="mb-1">Booking Room @ViewBag.RoomNumber</h5>
+                        <p class="mb-0">Price: <strong>$@ViewBag.PricePerNight</strong> / night</p>
+                    </div>
+
+                    <form asp-action="Create">
+                        <!-- Hide the RoomId -->
+                        <input type="hidden" asp-for="RoomId" />
+
+                        <div class="form-group mb-3">
+                            <label asp-for="CustomerName" class="control-label fw-bold">Full Name</label>
+                            <input asp-for="CustomerName" class="form-control" placeholder="e.g. Timmy The CS" />
+                            <span asp-validation-for="CustomerName" class="text-danger"></span>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6 form-group mb-3">
+                                <label asp-for="CheckInDate" class="control-label fw-bold">Check-In Date</label>
+                                <input asp-for="CheckInDate" class="form-control" type="date" />
+                                <span asp-validation-for="CheckInDate" class="text-danger"></span>
+                            </div>
+                            <div class="col-md-6 form-group mb-4">
+                                <label asp-for="CheckOutDate" class="control-label fw-bold">Check-Out Date</label>
+                                <input asp-for="CheckOutDate" class="form-control" type="date" />
+                                <span asp-validation-for="CheckOutDate" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">Confirm Reservation</button>
+                            <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary">Cancel</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

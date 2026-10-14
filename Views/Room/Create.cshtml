@@ -1,0 +1,61 @@
+@model HotelManager.Models.Room
+
+@{
+    ViewData["Title"] = "Add New Room";
+}
+
+<div class="container mt-4">
+    <h2>Add a New Hotel Room</h2>
+    <p class="text-muted">Fill out the details below to add a room to the database.</p>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <!-- This form (RoomController) -->
+            <form asp-action="Create" method="post">
+                
+                <!-- Room Number -->
+                <div class="form-group mb-3">
+                    <label asp-for="RoomNumber" class="control-label">Room Number</label>
+                    <input asp-for="RoomNumber" class="form-control" placeholder="e.g., 101" />
+                    <!-- This shows a red error if they leave it blank (because of [Required] in your model) -->
+                    <span asp-validation-for="RoomNumber" class="text-danger"></span>
+                </div>
+
+                <!-- Bed Type -->
+                <div class="form-group mb-3">
+                    <label asp-for="BedType" class="control-label">Bed Type</label>
+                    <select asp-for="BedType" class="form-control">
+                        <option value="">-- Select a Bed Type --</option>
+                        <option value="King">King</option>
+                        <option value="Queen">Queen</option>
+                        <option value="Twin">Twin</option>
+                    </select>
+                    <span asp-validation-for="BedType" class="text-danger"></span>
+                </div>
+
+                <!-- Price-->
+                <div class="form-group mb-3">
+                    <label asp-for="PricePerNight" class="control-label">Price Per Night ($)</label>
+                    <input asp-for="PricePerNight" type="number" step="0.01" class="form-control" />
+                    <span asp-validation-for="PricePerNight" class="text-danger"></span>
+                </div>
+
+                <!-- Is Available (Checkbox) -->
+                <div class="form-group form-check mb-4">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="IsAvailable" />
+                        Is this room ready for guests right now?
+                    </label>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Save to Database</button>
+                    <a asp-controller="Home" asp-action="Index" class="btn btn-secondary ms-2">Cancel</a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

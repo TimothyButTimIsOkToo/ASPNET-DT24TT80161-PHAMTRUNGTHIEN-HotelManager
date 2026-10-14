@@ -1,0 +1,36 @@
+@{
+    ViewData["Title"] = "Hotel Dashboard";
+}
+
+<div class="text-center" style="margin-bottom: 30px;">
+    <h1>Welcome to the Hotel Dashboard</h1>
+</div>
+
+@if (User.IsInRole("Admin"))
+{
+    <div style="background-color: #ffe6e6; padding: 20px; border-radius: 8px; border: 1px solid red;">
+        <h2>Admin Panel</h2>
+        <p>Welcome, Administrator. Here are your management tools:</p>
+        <ul>
+            <li>Add, edit, or remove hotel rooms.</li>
+            <li>View all guest bookings and cancel reservations.</li>
+            <li>Manage user accounts and staff roles.</li>
+            <li>View financial reports and occupancy rates.</li>
+        </ul>
+        <button style="background: darkred; color: white; padding: 10px 20px; border: none; cursor: pointer;">Manage Rooms</button>
+    </div>
+}
+else
+{
+    <div style="background-color: #e6f7ff; padding: 20px; border-radius: 8px; border: 1px solid blue;">
+        <h2>Guest Portal</h2>
+        <p>Welcome, Guest! We are thrilled to have you.</p>
+        <ul>
+            <li>Browse available rooms and view photos.</li>
+            <li>Book a room for your upcoming stay.</li>
+            <li>View your current and past reservation history.</li>
+            <li>Update your personal profile and preferences.</li>
+        </ul>
+        <button style="background: darkblue; color: white; padding: 10px 20px; border: none; cursor: pointer;">Book a Room</button>
+    </div>
+}

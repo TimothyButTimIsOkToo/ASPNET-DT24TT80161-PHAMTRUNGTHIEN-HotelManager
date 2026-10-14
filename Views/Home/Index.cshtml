@@ -1,0 +1,48 @@
+﻿<!-- Tell the view to expect a list of Rooms -->
+@model IEnumerable<HotelManager.Models.Room>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- welcome message -->
+<div class="container-fluid p-0 mb-5 mt-2">
+    <div class="text-center bg-dark text-white shadow-lg" 
+         style="background-image: url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); background-size: cover; background-position: center; height: 400px; display: flex; align-items: center; justify-content: center; border-radius: 10px;">
+        
+        <div class="p-5" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 15px;">
+            <h1 class="display-3 fw-bold text-uppercase tracking-wider text-white" style="letter-spacing: 2px;">The Grand Hotel</h1>
+            <p class="lead mb-0 fs-4 text-white">Experience uncompromising luxury and comfort.</p>
+        </div>
+
+    </div>
+</div>
+
+<!-- Bootstrap Grid System -->
+<div class="row">
+    @foreach (var room in Model)
+    {
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 shadow-sm border-0 bg-light">
+                <div class="card-body text-center">
+                    <h4 class="card-title text-dark">Room @room.RoomNumber</h4>
+                    <h6 class="card-subtitle mb-3 text-muted">@room.BedType Bed</h6>
+                    
+                    <p class="card-text fs-3 fw-bold text-success">
+                        <!-- Formats official currency -->
+                        @room.PricePerNight.ToString("C") <span class="fs-6 fw-normal text-muted">/ night</span>
+                    </p>
+                    
+                    <a asp-controller="Booking" asp-action="Create" asp-route-roomId="@room.Id" class="btn btn-primary w-100 py-2 text-uppercase fw-bold">Book This Room</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-warning text-center" role="alert">
+        Sorry, we are completely booked right now! Please check back later.
+    </div>
+}
