@@ -68,7 +68,7 @@ using (var scope = app.Services.CreateScope())
             await roleManager.CreateAsync(new IdentityRole(roleName));
         }
     }
-    // Create Admin account where UserName and Email perfectly match
+    // Create Admin
     string adminEmail = "boss@hotel.com";
     string adminPassword = "admin"; 
     
