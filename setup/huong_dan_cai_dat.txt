@@ -1,0 +1,5 @@
+Mở file .sln bằng Visual Studio
+
+Mở Package Manager Console gõ Update-Database để tạo CSDL LocalDB
+
+Sau đó ấn Ctrl+F5 để chạy
